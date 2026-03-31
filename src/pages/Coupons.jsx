@@ -94,6 +94,7 @@ coupons.code.toLowerCase().includes(searchTerm.toLowerCase())
 
    <tbody>
     {
+      fileteredCoupons.length > 0 ? 
       fileteredCoupons.map((elem)=>{
         return(
           <tr key={elem.id} className='text-white' >
@@ -110,7 +111,10 @@ coupons.code.toLowerCase().includes(searchTerm.toLowerCase())
   </td>
 </tr>
         )
-      })
+      }) : 
+      <div className='flex justify-center items-center text-white'>
+        <h1>Coupons Not Availble</h1>
+      </div>
     }
    </tbody>
   </table>

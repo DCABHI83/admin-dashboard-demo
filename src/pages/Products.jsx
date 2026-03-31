@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import Popup from "../components/Popup";
 
 const Products = () => {
   const [searchTerm,SetSearchTerm] = useState("")
+  const [showPopUp,setShowPopup] = useState(false)
+
   const products = [
     { id: 1, name: "Wireless Mouse", category: "Electronics", stock: 120, price: 799, status: "Active" },
     { id: 2, name: "Gaming Keyboard", category: "Electronics", stock: 60, price: 2499, status: "Active" },
@@ -18,9 +21,14 @@ const filteredArray = products.filter((products)=>
 
 
   return (
-    <div className="p-6">
-
+    <div className="p-6 relative">
+         <div className="absolute">
+          {
+            showPopUp && <Popup setShowPopup = {setShowPopup}  />
+          }
+        </div>
       <div className="flex justify-between items-center mb-4">
+       
         <h2 className="text-xl font-semibold text-white">Products</h2>
 
         <input
@@ -30,6 +38,9 @@ const filteredArray = products.filter((products)=>
           onChange={(e)=>SetSearchTerm(e.target.value)}
           className="border border-gray-300 rounded-md px-3 py-2 w-64 outline-none focus:ring-2 focus:ring-blue-400 text-white"
         />
+        <button onClick={()=>setShowPopup(prev => !prev)} className="text-white border p-3">
+  Add Product
+</button>
       </div>
 
       <table className="w-full border border-gray-200 rounded-lg overflow-hidden">
@@ -45,7 +56,9 @@ const filteredArray = products.filter((products)=>
         </thead>
 
         <tbody>
-          {filteredArray?.map((product) => (
+          {filteredArray.length > 0 ?  
+          
+          filteredArray?.map((product) => (
             <tr key={product.id} className="border-t  text-white">
               <td className="p-3">{product.name}</td>
               <td className="p-3">{product.category}</td>
@@ -64,7 +77,13 @@ const filteredArray = products.filter((products)=>
                 </span>
               </td>
             </tr>
-          ))}
+          )):
+          <div className="text-white flex justify-center items-center">
+            <h1>Product not Available</h1>
+          </div>
+          
+          }
+      
         </tbody>
 
       </table>

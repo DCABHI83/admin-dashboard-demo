@@ -75,7 +75,8 @@ const Category = () => {
         </table>
 
         <tbody>
-          {filteredCategory.map((elem) => {
+          {filteredCategory.length > 0 ? 
+          filteredCategory.map((elem) => {
             return (
               <tr key={elem.id} className="text-white">
                 <td className="p-8">{elem.id}</td>
@@ -84,7 +85,11 @@ const Category = () => {
                 <td className="p-8">{elem.status}</td>
               </tr>
             );
-          })}
+          }) :
+        <div className="text-white text-center">
+          <h1>Category not available</h1>
+        </div>
+        }
         </tbody>
       </div>
     </>

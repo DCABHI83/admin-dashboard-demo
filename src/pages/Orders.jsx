@@ -104,6 +104,7 @@ orders.customerName.toLowerCase().includes(searchTerm.toLowerCase()) || orders.o
 
         <tbody>
           {
+            filteredCategory.length > 0 ? 
             filteredCategory.map((elem)=>{
               return(
                 <tr key={elem.id} className='text-white'>
@@ -131,7 +132,10 @@ orders.customerName.toLowerCase().includes(searchTerm.toLowerCase()) || orders.o
 
                 </tr>
               )
-            })
+            }) : 
+            <div className='text-white text-center'>
+              <h1>No orders Available by that name</h1>
+            </div>
           }
         </tbody>
       </table>

@@ -109,6 +109,7 @@ customers.name.toLowerCase().includes(searchTerm.toLowerCase()) || customers.ema
   <tbody>
  
       {
+        filteredCustomer.length > 0 ? 
         filteredCustomer.map((elem)=>{
           return (
             <tr key={elem.id} className='text-white  '>
@@ -122,7 +123,10 @@ customers.name.toLowerCase().includes(searchTerm.toLowerCase()) || customers.ema
               <td  className={`${elem.status === "Active" ? 'bg-green' : 'bg-red'}`}>{elem.status}</td>
             </tr>
           )
-        })
+        }) : 
+        <div className='text-white text-center '>
+          <h1>User data not available</h1>
+        </div>
       }
  
   </tbody>
