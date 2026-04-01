@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 
 const Popup = ({setShowPopup}) => {
   const [form, setForm] = useState({
@@ -12,6 +13,8 @@ const Popup = ({setShowPopup}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log("form created successfully",form)
+    toast.success("Product Added SuccessFully")
   }
 
   return (
@@ -34,15 +37,15 @@ const Popup = ({setShowPopup}) => {
               {/* ID Field */}
               <div className="col-span-1">
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1" htmlFor="id">ID</label>
-                <input className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" 
-                  type="text" name='id' value={form.id} onChange={(e) => setForm({ ...form, id: e.target.value })} placeholder='001' />
+                <input className="  w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" 
+                  type="text" required name='id' value={form.id} onChange={(e) => setForm({ ...form, id: e.target.value })} placeholder='001' />
               </div>
 
               {/* Status Field */}
               <div className="col-span-1">
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1" htmlFor="status">Status</label>
                 <input className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" 
-                  type="text" name='status' value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })} placeholder='Active' />
+                  type="text" required name='status' value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value })} placeholder='Active' />
               </div>
             </div>
 
@@ -50,14 +53,14 @@ const Popup = ({setShowPopup}) => {
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1" htmlFor="name">Product Name</label>
               <input className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" 
-                type="text" name='name' value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder='Enter product name' />
+                type="text" required name='name' value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder='Enter product name' />
             </div>
 
             {/* Category Field */}
             <div>
               <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1" htmlFor="category">Category</label>
               <input className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" 
-                type="text" name='category' value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} placeholder='Electronics' />
+                type="text" required name='category' value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} placeholder='Electronics' />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -72,7 +75,7 @@ const Popup = ({setShowPopup}) => {
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1" htmlFor="price">Price</label>
                 <input className="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all" 
-                  type="text" name='price' value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} placeholder='$0.00' />
+                  type="text" required name='price' value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} placeholder='$0.00' />
               </div>
             </div>
 
