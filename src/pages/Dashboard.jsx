@@ -19,16 +19,16 @@ import Coupons from './Coupons';
 import Analytics from './Analytics';
 
 const Dashboard = () => {
-  const [active, setActive] = useState("products")
+  const [active, setActive] = useState("analytics")
   const [isOpen, setIsOpen] = useState(true)
 
   const menuItems = [
+    { id: "analytics", label: "Analytics", icon: <BarChart3 size={20} />, component: <Analytics /> },
     { id: "products", label: "Products", icon: <Package size={20} />, component: <Products /> },
     { id: "customer", label: "Customers", icon: <Users size={20} />, component: <Customers /> },
     { id: "orders", label: "Orders", icon: <ShoppingCart size={20} />, component: <Orders /> },
     { id: "category", label: "Category", icon: <LayoutGrid size={20} />, component: <Category /> },
     { id: "coupons", label: "Coupons", icon: <TicketPercent size={20} />, component: <Coupons /> },
-    { id: "analytics", label: "Analytics", icon: <BarChart3 size={20} />, component: <Analytics /> },
   ];
 
   return (

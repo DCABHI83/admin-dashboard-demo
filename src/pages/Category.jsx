@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Search, FolderTree, MoreHorizontal, Layers, Plus } from "lucide-react";
+import CategoryPopup from "../components/CategoryPopup";
 
 const Category = () => {
   const [searchTerm, SetSearchTerm] = useState("");
-
+  const [showPopUp,setShowPopUp] = useState(false)
   const categories = [
     { id: 1, name: "Electronics", slug: "electronics", productCount: 25, status: "Active", createdAt: "2025-12-01" },
     { id: 2, name: "Footwear", slug: "footwear", productCount: 12, status: "Active", createdAt: "2026-01-10" },
@@ -19,6 +20,9 @@ const Category = () => {
 
   return (
     <div className="space-y-6">
+      {
+        showPopUp && <CategoryPopup setShowPopUp = {setShowPopUp}  />
+      }
       {/* Header & Actions */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
         <div>
@@ -37,7 +41,7 @@ const Category = () => {
               className="pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 w-64 outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500/50 focus:bg-white transition-all"
             />
           </div>
-          <button className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-blue-900/20">
+          <button onClick={()=>setShowPopUp(true)} className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-blue-900/20">
             <Plus size={18} />
             New Category
           </button>
