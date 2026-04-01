@@ -1,51 +1,84 @@
 import React from 'react'
-import {Chart as ChartJs,ArcElement,Tooltip,Legend} from 'chart.js'
-import {Doughnut} from 'react-chartjs-2'
+import { Chart as ChartJs, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'react-chartjs-2'
+
 ChartJs.register([
-   ArcElement,
-   Tooltip,
-   Legend
+  ArcElement,
+  Tooltip,
+  Legend
 ])
-const prices = [
-  { "id": 1, "name": "Laptop", "price": 55000 },
-  { "id": 2, "name": "Phone", "price": 25000 },
-  { "id": 3, "name": "Headphones", "price": 3000 },
-  { "id": 4, "name": "Keyboard", "price": 1500 },
-  { "id": 5, "name": "Mouse", "price": 800 },
-  { "id": 6, "name": "Monitor", "price": 12000 },
-  { "id": 7, "name": "Tablet", "price": 18000 },
-  { "id": 8, "name": "Smartwatch", "price": 7000 }
+
+const categorySales = [
+  { "name": "Electronics", "value": 45 },
+  { "name": "Footwear", "value": 25 },
+  { "name": "Clothing", "value": 15 },
+  { "name": "Accessories", "value": 10 },
+  { "name": "Others", "value": 5 }
 ]
 
 const DoughnutChart = () => {
-    var data = {
-         labels: prices.map((labels)=>labels.name),
-      datasets: [{
-        // label: '# of Votes',
-        data: prices.map((obj)=>obj.price),
-        backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4
-      }]
-    }
-    var options = {
-        maintainAspectRatio : true,
-        scales:{
-            y:{
-                beginAtZero:true
-            }
-        },
-        legend:{
-            labels:{
-                fontSize:26
-            }
+  const data = {
+    labels: categorySales.map((item) => item.name),
+    datasets: [{
+      data: categorySales.map((item) => item.value),
+      backgroundColor: [
+        '#4f46e5', // Indigo 600
+        '#6366f1', // Indigo 500
+        '#818cf8', // Indigo 400
+        '#94a3b8', // Slate 400
+        '#cbd5e1'  // Slate 300
+      ],
+      hoverBackgroundColor: [
+        '#4338ca', // Darker Indigo
+        '#4f46e5',
+        '#6366f1',
+        '#64748b',
+        '#94a3b8'
+      ],
+      borderWidth: 2,
+      borderColor: '#ffffff',
+      hoverOffset: 12
+    }]
+  }
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '75%', // Makes the doughnut thinner and more modern
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: {
+          padding: 20,
+          usePointStyle: true,
+          pointStyle: 'circle',
+          font: {
+            size: 12,
+            weight: '600',
+            family: "'Inter', sans-serif"
+          },
+          color: '#64748b'
         }
+      },
+      tooltip: {
+        backgroundColor: '#1e293b',
+        padding: 12,
+        titleFont: { size: 14, weight: 'bold' },
+        bodyFont: { size: 13 },
+        cornerRadius: 8,
+        displayColors: true,
+        boxPadding: 6,
+        callbacks: {
+          label: (context) => ` ${context.label}: ${context.raw}%`
+        }
+      }
     }
+  }
+
   return (
-<Doughnut height={500} data={data} options={options}/>
+    <div className="w-full h-full min-h-[300px] flex items-center justify-center p-4">
+      <Doughnut data={data} options={options} />
+    </div>
   )
 }
 

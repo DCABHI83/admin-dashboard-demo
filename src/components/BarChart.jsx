@@ -1,51 +1,93 @@
 import React from 'react'
-import {Chart as ChartJs,BarElement,CategoryScale,LinearScale} from 'chart.js'
-import {Bar} from 'react-chartjs-2'
+import {
+  Chart as ChartJs,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend
+} from 'chart.js'
+import { Bar } from 'react-chartjs-2'
+
 ChartJs.register([
-    BarElement,
-    CategoryScale,
-    LinearScale
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend
 ])
-const prices = [
-  { "id": 1, "name": "Laptop", "price": 55000 },
-  { "id": 2, "name": "Phone", "price": 25000 },
-  { "id": 3, "name": "Headphones", "price": 3000 },
-  { "id": 4, "name": "Keyboard", "price": 1500 },
-  { "id": 5, "name": "Mouse", "price": 800 },
-  { "id": 6, "name": "Monitor", "price": 12000 },
-  { "id": 7, "name": "Tablet", "price": 18000 },
-  { "id": 8, "name": "Smartwatch", "price": 7000 }
+
+const salesData = [
+  { "name": "Electronics", "sales": 850 },
+  { "name": "Footwear", "sales": 620 },
+  { "name": "Clothing", "sales": 950 },
+  { "name": "Accessories", "sales": 480 },
+  { "name": "Home", "sales": 380 },
+  { "name": "Beauty", "sales": 290 }
 ]
 
 const BarChart = () => {
-    var data = {
-         labels: prices.map((labels)=>labels.name),
-      datasets: [{
-        label: '# of Votes',
-        data: prices.map((obj)=>obj.price),
-         backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4
-      }]
-    }
-    var options = {
-        maintainAspectRatio : true,
-        scales:{
-            y:{
-                beginAtZero:true
-            }
-        },
-        legend:{
-            labels:{
-                fontSize:26
-            }
+  const data = {
+    labels: salesData.map((d) => d.name),
+    datasets: [{
+      label: 'Units Sold',
+      data: salesData.map((d) => d.sales),
+      backgroundColor: '#6366f1', // Indigo 500
+      hoverBackgroundColor: '#4f46e5', // Indigo 600
+      borderRadius: 8, // Rounded bars for a modern look
+      borderSkipped: false,
+      barThickness: 32,
+    }]
+  }
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false, // Keep it clean
+      },
+      tooltip: {
+        backgroundColor: '#1e293b',
+        padding: 12,
+        titleFont: { size: 14, weight: 'bold' },
+        bodyFont: { size: 13 },
+        cornerRadius: 8,
+        displayColors: false,
+        callbacks: {
+          label: (context) => ` ${context.raw} Units`
         }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        grid: {
+          drawBorder: false,
+          color: '#f1f5f9',
+        },
+        ticks: {
+          color: '#94a3b8',
+          font: { size: 11, weight: '500' },
+          stepSize: 200
+        }
+      },
+      x: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          color: '#475569',
+          font: { size: 11, weight: '600' }
+        }
+      }
     }
+  }
+
   return (
-<Bar height={500} data={data} options={options}/>
+    <div className="w-full h-full min-h-[350px]">
+      <Bar data={data} options={options} />
+    </div>
   )
 }
 
