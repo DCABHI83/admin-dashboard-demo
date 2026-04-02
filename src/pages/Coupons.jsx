@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 import { Search, Ticket, MoreHorizontal, Percent, Banknote, Plus, Calendar } from 'lucide-react';
+import CategoryPopup from '../components/CategoryPopup';
+import CouponPopup from '../components/CouponPopup';
 
 const Coupons = () => {
   const [searchTerm, SetSearchTerm] = useState("")
+  const [showPopUp,setShowPopUp] = useState(false)
+
 
   const coupons = [
     { id: "CPN10", code: "SAVE10", discountType: "percentage", discountValue: 10, minOrderAmount: 500, maxDiscount: 200, usageLimit: 100, usedCount: 45, status: "Active", expiryDate: "2026-04-01" },
@@ -19,6 +23,9 @@ const Coupons = () => {
 
   return (
     <div className="space-y-6">
+      {
+        showPopUp && <CouponPopup setShowPopUp={setShowPopUp} />
+      }
       {/* Header & Actions */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
         <div>
@@ -37,7 +44,7 @@ const Coupons = () => {
               className="pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-700 w-64 outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500/50 focus:bg-white transition-all"
             />
           </div>
-          <button className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-indigo-900/20">
+          <button onClick={()=>setShowPopUp(true)} className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-lg shadow-indigo-900/20">
             <Plus size={18} />
             Create Coupon
           </button>

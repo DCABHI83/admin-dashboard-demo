@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Search, Plus, Package, MoreVertical, AlertCircle } from "lucide-react";
 import Popup from "../components/Popup";
+import ChatBot from "react-chatbotify"
 
 const Products = () => {
   const [searchTerm, SetSearchTerm] = useState("");
@@ -143,6 +144,7 @@ const Products = () => {
           </tbody>
         </table>
       </div>
+    <ChatBot/>
     </div>
   );
 };

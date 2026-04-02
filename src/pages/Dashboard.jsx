@@ -33,18 +33,18 @@ const Dashboard = () => {
 
   return (
     <div className="flex h-screen w-full bg-slate-50 overflow-hidden font-sans">
-      {/* Sidebar Navigation */}
+      {/* Sidebar Navigation - Updated to Enterprise Dark Slate */}
       <aside 
         className={`${
           isOpen ? "w-64" : "w-20"
-        } bg-[#0F172A] text-slate-300 flex flex-col transition-all duration-300 ease-in-out border-r border-slate-800`}
+        }  text-slate-400 flex flex-col transition-all duration-300 ease-in-out border-r border-slate-800`}
       >
         {/* Toggle & Logo Section */}
         <div className="h-16 flex items-center justify-between px-6 border-b border-slate-800/50">
-          {isOpen && <span className="font-bold tracking-tight text-lg">AdminPro</span>}
+          {isOpen && <span className="font-bold tracking-tight text-lg text-[#558bb8]">AdminPro</span>}
           <button 
             onClick={() => setIsOpen(!isOpen)}
-            className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"
+            className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-500 hover:text-white transition-colors"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -66,7 +66,7 @@ const Dashboard = () => {
                 {item.icon}
               </span>
               {isOpen && (
-                <div className="flex items-center justify-between w-full">
+                <div className="flex items-center justify-between w-full text-left">
                   <span>{item.label}</span>
                   {active === item.id && <ChevronRight size={14} className="opacity-50" />}
                 </div>
@@ -75,16 +75,16 @@ const Dashboard = () => {
           ))}
         </nav>
 
-        {/* User Info / Footer Placeholder */}
+        {/* User Info / Footer - Refined for Dark UI */}
         {isOpen && (
-          <div className="p-4 mx-4 mb-6 bg-slate-800/30 rounded-2xl border border-slate-800">
+          <div className="p-4 mx-4 mb-6 bg-slate-800/30 rounded-2xl border border-slate-800/50">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-[10px] font-bold">
+              <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-[10px] font-bold text-white shadow-inner">
                 AD
               </div>
-              <div>
-                <p className="text-xs font-bold text-slate-100">Admin User</p>
-                <p className="text-[10px] text-slate-500">System Manager</p>
+              <div className="overflow-hidden">
+                <p className="text-xs font-bold text-slate-100 truncate">Admin User</p>
+                <p className="text-[10px] text-slate-500 font-medium">System Manager</p>
               </div>
             </div>
           </div>
@@ -101,7 +101,7 @@ const Dashboard = () => {
         </header>
 
         {/* Dynamic Content Viewport */}
-        <div className="flex-1 overflow-y-auto p-8">
+        <div className="flex-1 overflow-y-auto p-8 bg-slate-50/30">
           <div className="max-w-6xl mx-auto">
              {menuItems.find(item => item.id === active)?.component}
           </div>
